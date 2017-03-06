@@ -40,16 +40,21 @@ class GuessChecker
     cheat == 'true'
   end
 
-def check_guess (guess, cheat)
-  if params['guess'].nil?
-      message = "Make a guess!"
-      erb :index, :locals => {:message => message, :correct => false, :cheat => false}
-  else
-    gc = GuessChecker.new(number, params['guess'], params['cheat'])
-    message = gc.which_output
-    erb :index, :locals => {:message => message, :correct => gc.correct, :show_number => gc.show_number, :cheat => gc.cheat?}
-  end
+  def which_color
+    if correct?
+      color = 'green'
+    elsif way_too_high?
+      color = 'red'
+    elsif way_too_low?
+      color = 'red'
+    elsif too_low?
+      color = 'pink'
+    elsif too_high?
+      color = 'pink'
+    end
+  color
 end
+
   def which_output
     mm = MessageMaster.new
     if correct?
