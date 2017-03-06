@@ -9,9 +9,14 @@
 
         <% if correct%>
         <p>
-          <%= show_number %>
+          <%= show_number %><br>
           <%= message %>
        </p>
+       <% elsif cheat%>
+       <p>
+       <%= show_number[0..-2] + ", you cheater!" %><br>
+       <%= "You were " + message.downcase %>
+     </p>
         <% else %>
         <p>
           <%= message %>
